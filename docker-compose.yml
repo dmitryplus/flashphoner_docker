@@ -16,9 +16,9 @@ services:
       #- "31001:31001/udp"
       #- "31002:31002/udp"
       #- "31003:31003/udp"
-    #expose:
+    expose:
     #  - "30000-35000/tcp"
-    #  - "30000-35000/udp"
+      - "30000-35000/udp"
     networks:
       - webcallserver.local_network
     volumes:
