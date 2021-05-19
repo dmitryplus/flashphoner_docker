@@ -1,0 +1,33 @@
+version: "3.7"
+services:
+
+  webcallserver-instance:
+    container_name: webcallserver-instance
+    build:
+      context: ./image
+      dockerfile: Dockerfile
+    ports:
+      - "8444:8444"
+      - "8443:8443"
+      - "8443:8443/udp"
+      - "1935:1935/tcp"
+      - "1935:1935/udp"
+      - "554:554/tcp"
+      #- "31001:31001/udp"
+      #- "31002:31002/udp"
+      #- "31003:31003/udp"
+    #expose:
+    #  - "30000-35000/tcp"
+    #  - "30000-35000/udp"
+    networks:
+      - webcallserver.local_network
+    volumes:
+      - "./conf/flashphoner.properties:/usr/local/FlashphonerWebCallServer/conf/flashphoner.properties"
+      - "./logs:/usr/local/FlashphonerWebCallServer/logs"
+      - "./hls:/usr/local/FlashphonerWebCallServer/hls"
+      - "./media:/usr/local/FlashphonerWebCallServer/media"
+      - "./records:/usr/local/FlashphonerWebCallServer/records"
+
+networks:
+  webcallserver.local_network:
+    driver: bridge
